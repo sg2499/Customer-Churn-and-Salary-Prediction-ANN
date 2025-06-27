@@ -1,8 +1,8 @@
 # 🧠 Customer Analytics with Artificial Neural Networks (ANN)
 
-![GitHub repo size](https://img.shields.io/github/repo-size/your-username/Customer_ANN_Analytics)
-![GitHub stars](https://img.shields.io/github/stars/your-username/Customer_ANN_Analytics?style=social)
-![Last Commit](https://img.shields.io/github/last-commit/your-username/Customer_ANN_Analytics)
+![GitHub repo size](https://img.shields.io/github/repo-size/sg2499/Customer_ANN_Analytics)
+![GitHub stars](https://img.shields.io/github/stars/sg2499/Customer_ANN_Analytics?style=social)
+![Last Commit](https://img.shields.io/github/last-commit/sg2499/Customer_ANN_Analytics)
 ![Streamlit](https://img.shields.io/badge/Built%20With-Streamlit-orange)
 
 This repository provides a comprehensive solution using **Artificial Neural Networks** (ANNs) to solve two real-world business problems:
