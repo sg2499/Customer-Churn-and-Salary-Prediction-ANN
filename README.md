@@ -1,129 +1,131 @@
-# 💼 Customer Churn & Salary Prediction using Artificial Neural Networks (ANN)
 
-This project implements **two Streamlit-based web applications** using Artificial Neural Networks (ANNs) to:
-1. 🔁 **Classify Customer Churn** (whether a customer will exit the bank).
-2. 💰 **Predict Estimated Salary** (regression-based prediction of salary based on profile features).
+# Customer Churn & Salary Prediction using ANN
 
-Both models are built on the same dataset (`Churn_Modelling.csv`) with shared preprocessing steps using Scikit-learn and TensorFlow.
+This repository contains two Artificial Neural Network (ANN) based projects built using TensorFlow and deployed using Streamlit. The system performs:
+
+- **Customer Churn Prediction** (Classification Task)
+- **Estimated Salary Prediction** (Regression Task)
+- **Hyperparameter Tuning** for ANN architectures using GridSearch
+
+## 🔍 Project Overview
+
+1. **Churn Prediction**: Classifies whether a customer will leave the bank.
+2. **Salary Prediction**: Predicts the estimated salary of a customer based on various features.
+3. **Hyperparameter Tuning**: Optimizes model performance using grid search with different numbers of hidden layers and neurons.
 
 ---
 
-## 📁 Folder & File Structure Overview
+## 📁 Folder Structure
 
 ```
-📦 Project Root/
+├── classification_app.py         # Streamlit app for churn classification
 
-├── Churn_Modelling.csv                           # Original dataset used for both models
+├── regression_app.py             # Streamlit app for salary regression
 
-├── Churn_Prediction_Using_Classification.ipynb   # Notebook for ANN classification model (churn prediction)
+├── Classification_Model.h5       # Trained ANN classification model
 
-├── Salary_Prediction_Using_Regression.ipynb       # Notebook for ANN regression model (salary prediction)
+├── Regression_Model.h5           # Trained ANN regression model
 
-├── Churn_Prediction_Evaluation.ipynb             # Performance evaluation of the classification model
-│
-├── classification_app.py                         # Streamlit app for customer churn classification
+├── Gender_Encoder.pkl            # LabelEncoder for Gender
 
-├── regression_app.py                             # Streamlit app for salary prediction
-│
-├── Classification_Model.h5                       # Trained ANN model for churn classification
+├── Geography_OHE.pkl             # OneHotEncoder for Geography
 
-├── Regression_Model.h5                           # Trained ANN model for salary prediction
-│
-├── Gender_Encoder.pkl                             # LabelEncoder for encoding 'Gender'
+├── Scaler.pkl                    # StandardScaler for preprocessing
 
-├── Geography_OHE.pkl                              # OneHotEncoder for encoding 'Geography'
+├── Churn_Modelling.csv           # Dataset used for training
 
-├── Scaler.pkl                                     # StandardScaler used for scaling input features
-│
-├── requirements.txt                               # Required packages for deployment on Streamlit Cloud
+├── Churn_Prediction_Evaluation.ipynb     # Evaluation of classifier model
 
-├── README.md                                      # Project documentation (this file)
+├── Churn_Prediction_Using_Regression.ipynb # Regression model training
+
+├── HyperParameter_Tuning_ANN.ipynb       # Grid Search for optimal ANN
+
+├── requirements.txt              # Project dependencies
+
+└── README.md                     # Project documentation
 ```
 
 ---
 
-## 🚀 App 1: Customer Churn Classification
+## 📊 Dataset
 
-- **File:** `classification_app.py`
-- **Model File:** `Classification_Model.h5`
-- **Goal:** Predict whether a bank customer will churn (exit) or stay.
-- **Target Variable:** `Exited` (0 = Stay, 1 = Churn)
-- **Metrics Used:** Accuracy, Precision, Recall, F1 Score
-
-### Features Used:
-- Geography 🌍
-- Gender 👤
-- Age 🎂
-- Credit Score 💳
-- Balance 💰
-- Tenure (Years with Bank) 📅
-- Number of Products 📦
-- Has Credit Card?
-- Is Active Member?
+- **Name**: `Churn_Modelling.csv`
+- **Source**: Contains 10,000 customer records of a bank.
+- **Key Columns Used**:
+  - CreditScore, Geography, Gender, Age, Tenure, Balance
+  - NumOfProducts, HasCrCard, IsActiveMember, Exited (Target)
 
 ---
 
-## 📈 App 2: Salary Prediction (Regression)
+## 🧠 Models
 
-- **File:** `regression_app.py`
-- **Model File:** `Regression_Model.h5`
-- **Goal:** Predict the **EstimatedSalary** of a customer using regression.
-- **Target Variable:** `EstimatedSalary` (continuous numeric value)
-- **Metric Used:** Mean Absolute Error (MAE)
+### 1. ANN for Churn Prediction
+- **Model Type**: Binary Classifier
+- **Output**: Probability of churn (Exited = 0 or 1)
+- **Activation**: ReLU for hidden layers, Sigmoid for output
+- **Loss Function**: Binary Crossentropy
 
-### Additional Feature:
-- Includes `Exited` as a feature for predicting salary.
-
----
-
-## ⚙️ Preprocessing & Pickle Files
-
-These files are common to both models:
-- `Gender_Encoder.pkl`: LabelEncoder trained on gender
-- `Geography_OHE.pkl`: OneHotEncoder trained on geography
-- `Scaler.pkl`: StandardScaler to normalize all features
-
-They are loaded during app runtime to ensure consistency between training and inference.
+### 2. ANN for Salary Prediction
+- **Model Type**: Regressor
+- **Output**: Estimated Salary
+- **Activation**: ReLU for hidden layers
+- **Loss Function**: Mean Absolute Error (MAE)
 
 ---
 
-## 🛠 Requirements
+## ⚙️ Hyperparameter Tuning
 
-All dependencies are listed in `requirements.txt`:
-```
-streamlit==1.34.0
-pandas==2.2.2
-numpy==1.26.4
-scikit-learn==1.4.2
-matplotlib==3.8.4
-tensorboard==2.15.2
-tensorflow==2.15.1
+File: `HyperParameter_Tuning_ANN.ipynb`  
+Uses `KerasClassifier` & `GridSearchCV` to find best combination of:
+- Neurons: `[16, 32, 64, 128]`
+- Layers: `[1, 2]`
+- Epochs: `[50, 100]`
+
+---
+
+## 🖥 How to Run Locally
+
+1. **Create Virtual Environment** (Python 3.10+ recommended)
+```bash
+conda create -n ann_project python=3.10
+conda activate ann_project
 ```
 
-Use `pip install -r requirements.txt` to install them.
+2. **Install Dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+3. **Run Streamlit App**
+```bash
+streamlit run classification_app.py
+# or
+streamlit run regression_app.py
+```
 
 ---
 
-## 📦 Deployment
+## 📦 Requirements
 
-Both apps are compatible with [Streamlit Cloud](https://streamlit.io/cloud). Ensure that:
-- All `.pkl` and `.h5` model files are in the project root.
-- The correct entry point is used (`classification_app.py` or `regression_app.py`).
-
----
-
-## 📌 Future Enhancements
-
-- Add visualizations to display customer profile or feature importances.
-- Enable multi-customer predictions through batch uploads.
-- Use advanced MLOps tools to automate retraining.
+See `requirements.txt`. Main libraries:
+- streamlit==1.34.0
+- pandas==2.2.2
+- numpy==1.26.4
+- scikit-learn==1.4.2
+- matplotlib==3.8.4
+- tensorboard==2.15.2
+- tensorflow==2.15.0
+- scikeras
 
 ---
 
-## 👨‍💻 Author
+## 📌 Notes
 
-**Shailesh Gupta** ----> (https://github.com/sg2499)
-
-This project was developed as part of hands-on learning in ANN-based predictive modeling using Streamlit, Scikit-learn, and TensorFlow.
+- Ensure all pickle files (`*.pkl`) and models (`*.h5`) are present in the working directory.
+- Compatible with Python 3.10 or below (TensorFlow 2.15.0 ABI issue with Python 3.13).
 
 ---
+
+## 📬 Author
+
+This project is developed and maintained by **Shailesh Gupta** -----> (https://github.com/sg2499).
