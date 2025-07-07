@@ -10,7 +10,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder, OneHotEncoder
 # Load the Trained ANN Model
 # -------------------------------
 # 'Model.h5' is the saved ANN model trained to predict customer churn
-model = tf.keras.models.load_model('Model.h5')
+model = tf.keras.models.load_model('Classification_Model.h5', compile = False)
 
 # -------------------------------
 # Load Preprocessing Objects
