@@ -11,7 +11,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder, OneHotEncoder
 # Load the Trained ANN Regression Model
 # -------------------------------
 # 'Model.h5' is the saved ANN model trained to predict EstimatedSalary
-model = tf.keras.models.load_model('Regression_Model.h5')
+model = tf.keras.models.load_model('Regression_Model.h5', compile = False)
 
 # -------------------------------
 # Load Preprocessing Objects
@@ -45,6 +45,7 @@ num_of_products = st.slider('📦 Number Of Products', 1, 5)
 has_cr_card = st.selectbox('💳 Has Credit Card?', [0, 1])
 is_active_member = st.selectbox('✅ Is Active Member?', [0, 1])
 exited = st.selectbox('✅ Has Exited?', [0, 1])
+
 
 # -------------------------------
 # Prepare the Input DataFrame
