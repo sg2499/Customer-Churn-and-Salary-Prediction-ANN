@@ -78,13 +78,18 @@ input_data = pd.concat([input_data.reset_index(drop=True), geo_encoded_df], axis
 # Scale the Input Features
 # -------------------------------
 # Ensure input matches training data scaling for accurate predictions
-input_data = scaler.transform(input_data)
+# Optional fix depending on how the scaler was trained:
+try:
+    input_data_scaled = scaler.transform(input_data)
+except ValueError:
+    input_data_scaled = scaler.transform(input_data.values)
+
 
 # -------------------------------
 # Make the Prediction
 # -------------------------------
 # Predict churn probability using the trained ANN model
-prediction = model.predict(input_data)
+prediction = model.predict(input_data_scaled)
 prediction_prob = prediction[0][0]  # Get the predicted probability
 
 # -------------------------------
