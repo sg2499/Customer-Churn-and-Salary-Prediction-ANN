@@ -130,6 +130,16 @@ Refer to `requirements.txt`. Major packages used include:
 
 ---
 
+## 🌐 Live Demo
+
+You're welcome to explore the app by visiting the link provided below.
+
+Customer Churn Prediction 👉 [Try Yourself](https://customer-churn-and-salary-prediction-ann-krgtkngzvxxpsr4dk2yla.streamlit.app/)
+
+Salary Prediction 👉 [Try Yourself](https://customer-churn-and-salary-prediction-ann-twvikhotysv6oma8wur3u.streamlit.app/)
+
+---
+
 ## 🔍 Author Notes
 
 - Both models use consistent encoders and scalers.
